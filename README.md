@@ -90,6 +90,26 @@ The Power BI section converts the analysis into an interactive business intellig
 - Power Query
 - Data Modeling
 
+### Screenshots
+
+![Executive Summary](Power%20BI/Screenshots/Executive%20Summary.png)
+
+![Customer Analytics](Power%20BI/Screenshots/Customer%20analytics.png)
+
+![Product Analytics](Power%20BI/Screenshots/Product%20analytics.png)
+
+![Seller Analytics](Power%20BI/Screenshots/Seller%20analytics.png)
+
+![Payment Analytics](Power%20BI/Screenshots/Payment%20analytics.png)
+
+![Delivery Analytics](Power%20BI/Screenshots/Delivery%20analytics.png)
+
+![Review Analytics](Power%20BI/Screenshots/Review%20analytics.png)
+
+![Drill Through - Category Details](Power%20BI/Screenshots/Drill%20through%20Category%20details.png)
+
+![Tooltip - Customer](Power%20BI/Screenshots/Tooltip-Customer.png)
+
 ---
 
 # 3. Python Analytics
