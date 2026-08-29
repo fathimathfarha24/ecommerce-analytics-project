@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Python environments
+venv/
+.venv/
+env/
+
+# Environment variables
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.log
+
+# Dataset (public on Kaggle — see README)
+Dataset/
+
+# Power BI binary
+Power BI/*.pbix
+
+# Python outputs
+Python/outputs/

@@ -1,0 +1,63 @@
+table Customers
+	lineageTag: 05cbc17c-034d-4f25-86f3-ecffee0685fb
+
+	column customer_id
+		dataType: string
+		lineageTag: 07d18831-fac5-4f80-b6b0-7d3b9ca4b52e
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_unique_id
+		dataType: string
+		lineageTag: 311912e6-2dbf-495b-8488-a3928ddaefab
+		summarizeBy: none
+		sourceColumn: customer_unique_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_city
+		dataType: string
+		lineageTag: 5350b006-3e30-41f6-90ed-ca20a0c97efd
+		summarizeBy: none
+		sourceColumn: customer_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_state
+		dataType: string
+		lineageTag: d8fcb318-e01e-415b-89db-47e70674a4d7
+		summarizeBy: none
+		sourceColumn: customer_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ecommerce_analytics.orders'
+		dataType: string
+		lineageTag: b7b3400e-89f5-46d0-bd6a-897e3e2f20bd
+		summarizeBy: none
+		sourceColumn: ecommerce_analytics.orders
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Customers = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database("localhost:3306", "ecommerce_analytics", [ReturnSingleDatabase=true]),
+				    ecommerce_analytics_customers = Source{[Schema="ecommerce_analytics",Item="customers"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(ecommerce_analytics_customers,{{"customer_id", type text}, {"customer_unique_id", type text}, {"customer_zip_code_prefix", Int64.Type}, {"customer_city", type text}, {"customer_state", type text}, {"ecommerce_analytics.orders", type any}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"customer_zip_code_prefix"}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Removed Columns",{{"customer_id", Text.Trim, type text}}),
+				    #"Cleaned Text" = Table.TransformColumns(#"Trimmed Text",{{"customer_id", Text.Clean, type text}}),
+				    #"Trimmed Text1" = Table.TransformColumns(#"Cleaned Text",{{"customer_unique_id", Text.Trim, type text}}),
+				    #"Cleaned Text1" = Table.TransformColumns(#"Trimmed Text1",{{"customer_unique_id", Text.Clean, type text}}),
+				    #"Removed Duplicates" = Table.Distinct(#"Cleaned Text1", {"customer_id"})
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

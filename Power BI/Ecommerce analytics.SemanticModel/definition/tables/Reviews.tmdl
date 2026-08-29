@@ -1,0 +1,87 @@
+table Reviews
+	lineageTag: d5f7d552-2deb-40f4-8fb8-b027716a0799
+
+	column review_id
+		dataType: string
+		lineageTag: 21368088-5244-4346-84e5-6bcdcde10746
+		summarizeBy: none
+		sourceColumn: review_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_id
+		dataType: string
+		lineageTag: 1330b42b-ee4e-47d6-9185-01157f581fa0
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_score
+		dataType: int64
+		formatString: 0
+		lineageTag: 61d61715-bc6e-4638-84bf-2c6950ca7d52
+		summarizeBy: sum
+		sourceColumn: review_score
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_creation_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ff702c95-976c-4d63-82bb-ac6de03ed9b1
+		summarizeBy: none
+		sourceColumn: review_creation_date
+
+		variation Variation
+			isDefault
+			relationship: 2c04bc2e-95fd-4283-bb88-9211f7745dca
+			defaultHierarchy: LocalDateTable_f3592447-58a0-45b5-ae55-c1bb83167b1e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_answer_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 37e9caf8-c7a5-4e9f-a495-efb3d96752e6
+		summarizeBy: none
+		sourceColumn: review_answer_timestamp
+
+		variation Variation
+			isDefault
+			relationship: aca1d99b-0f5c-43cd-b35c-624574b2b5e5
+			defaultHierarchy: LocalDateTable_1b62448b-6edd-40c6-aa59-ffaaef370eec.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Review Date' =
+			
+			DATE(
+			    YEAR(Reviews[review_creation_date]),
+			    MONTH(Reviews[review_creation_date]),
+			    DAY(Reviews[review_creation_date])
+			)
+		formatString: Long Date
+		lineageTag: d32b20be-5e39-4634-ac5f-03c6987c9a77
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Reviews = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database("localhost:3306", "ecommerce_analytics", [ReturnSingleDatabase=true]),
+				    ecommerce_analytics_reviews = Source{[Schema="ecommerce_analytics",Item="reviews"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(ecommerce_analytics_reviews,{"review_comment_title", "review_comment_message"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

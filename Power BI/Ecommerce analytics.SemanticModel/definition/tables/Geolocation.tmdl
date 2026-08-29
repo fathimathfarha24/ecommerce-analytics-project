@@ -1,0 +1,42 @@
+table Geolocation
+	lineageTag: b8c941eb-2967-4c98-8c95-2572494821b8
+
+	column geolocation_zip_code_prefix
+		dataType: int64
+		formatString: 0
+		lineageTag: 64f83638-9339-472c-8964-821d2f5c0f71
+		summarizeBy: sum
+		sourceColumn: geolocation_zip_code_prefix
+
+		annotation SummarizationSetBy = Automatic
+
+	column geolocation_city
+		dataType: string
+		lineageTag: b5edd5ca-fa4c-435e-bd0c-fc76ca310bae
+		summarizeBy: none
+		sourceColumn: geolocation_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column geolocation_state
+		dataType: string
+		lineageTag: d0d87917-d46c-48cf-953d-f95e8f4cadcc
+		summarizeBy: none
+		sourceColumn: geolocation_state
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Geolocation = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database("localhost:3306", "ecommerce_analytics", [ReturnSingleDatabase=true]),
+				    ecommerce_analytics_geolocation = Source{[Schema="ecommerce_analytics",Item="geolocation"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(ecommerce_analytics_geolocation,{"geolocation_lat", "geolocation_lng"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

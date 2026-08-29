@@ -1,0 +1,52 @@
+table Sellers
+	lineageTag: 6c075b1d-c8b9-4c0e-ab44-8a95981660ca
+
+	column seller_id
+		dataType: string
+		lineageTag: 147f662b-9f59-4859-af81-8167988da99e
+		summarizeBy: none
+		sourceColumn: seller_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column seller_zip_code_prefix
+		dataType: int64
+		formatString: 0
+		lineageTag: da6fc09f-6531-43ab-9fe2-dd3006ecd1e7
+		summarizeBy: none
+		sourceColumn: seller_zip_code_prefix
+
+		annotation SummarizationSetBy = Automatic
+
+	column seller_city
+		dataType: string
+		lineageTag: 905f213e-a570-4906-a925-6f10e15f3d5a
+		summarizeBy: none
+		sourceColumn: seller_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column seller_state
+		dataType: string
+		lineageTag: 9eef6cac-04a1-4b70-aead-64392118aa7e
+		summarizeBy: none
+		sourceColumn: seller_state
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Sellers = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database("localhost:3306", "ecommerce_analytics", [ReturnSingleDatabase=true]),
+				    ecommerce_analytics_sellers = Source{[Schema="ecommerce_analytics",Item="sellers"]}[Data],
+				    #"Removed Duplicates" = Table.Distinct(ecommerce_analytics_sellers, {"seller_id"}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Removed Duplicates",{{"seller_id", Text.Trim, type text}}),
+				    #"Cleaned Text" = Table.TransformColumns(#"Trimmed Text",{{"seller_id", Text.Clean, type text}})
+				in
+				    #"Cleaned Text"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

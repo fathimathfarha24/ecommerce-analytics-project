@@ -1,0 +1,97 @@
+table Products
+	lineageTag: 39e0babd-3fd1-4ad1-8b08-016d091f26ea
+
+	column product_id
+		dataType: string
+		lineageTag: b6e7f791-1551-4578-9c31-a9eabf210199
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_category_name
+		dataType: string
+		lineageTag: bbd234bb-d9c3-424d-9d45-f83a2e5d8927
+		summarizeBy: none
+		sourceColumn: product_category_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_name_lenght
+		dataType: int64
+		formatString: 0
+		lineageTag: 24c7671e-fbe7-4c53-873e-02bead45f4a8
+		summarizeBy: sum
+		sourceColumn: product_name_lenght
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_description_lenght
+		dataType: int64
+		formatString: 0
+		lineageTag: 03aed770-fa8f-43aa-8904-7ef72f85d5ba
+		summarizeBy: sum
+		sourceColumn: product_description_lenght
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_photos_qty
+		dataType: int64
+		formatString: 0
+		lineageTag: 9fdb2649-926d-45e1-b045-57bd97ee3231
+		summarizeBy: sum
+		sourceColumn: product_photos_qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_weight_g
+		dataType: int64
+		formatString: 0
+		lineageTag: 6d667a4c-98b4-4aa2-9d35-07b22c8ff3de
+		summarizeBy: sum
+		sourceColumn: product_weight_g
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_length_cm
+		dataType: int64
+		formatString: 0
+		lineageTag: 0f5aa8cf-c030-45a3-9f35-c613d52ad953
+		summarizeBy: sum
+		sourceColumn: product_length_cm
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_height_cm
+		dataType: int64
+		formatString: 0
+		lineageTag: aa8d655a-bac4-426b-a613-1df01f9cc48a
+		summarizeBy: sum
+		sourceColumn: product_height_cm
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_width_cm
+		dataType: int64
+		formatString: 0
+		lineageTag: fa10cabc-c359-4002-97e7-ea173ec6cf36
+		summarizeBy: sum
+		sourceColumn: product_width_cm
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Products = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database("localhost:3306", "ecommerce_analytics", [ReturnSingleDatabase=true]),
+				    ecommerce_analytics_products = Source{[Schema="ecommerce_analytics",Item="products"]}[Data],
+				    #"Replaced Value" = Table.ReplaceValue(ecommerce_analytics_products,null,"unknown",Replacer.ReplaceValue,{"product_category_name"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Replaced Value", {"product_id"})
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

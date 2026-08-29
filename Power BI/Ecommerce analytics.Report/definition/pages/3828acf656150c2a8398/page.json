@@ -1,0 +1,48 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "3828acf656150c2a8398",
+  "displayName": "Category Details",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "8a1cfce365e8bab5e35e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Category_translation"
+              }
+            },
+            "Property": "product_category_name_english"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "995085dd0c0c5d420ced",
+    "type": "Drillthrough",
+    "parameters": [
+      {
+        "name": "bf2c040d9ec80ba0d15c",
+        "boundFilter": "8a1cfce365e8bab5e35e",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Category_translation"
+              }
+            },
+            "Property": "product_category_name_english"
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode"
+}

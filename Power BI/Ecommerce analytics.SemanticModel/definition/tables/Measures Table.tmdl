@@ -1,0 +1,258 @@
+table 'Measures Table'
+	lineageTag: dc9ab021-39da-4099-92ed-98360084ad25
+
+	measure 'Total Revenue' =
+			
+			SUM(Payments[payment_value])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 05ea49ee-85bb-4c2f-b14e-ec99f9ced0b0
+
+	measure 'Total Orders' =
+			
+			DISTINCTCOUNT(Orders[order_id])
+		formatString: 0
+		lineageTag: 7d0a2f15-dbc5-4d32-91d4-dbf7c7b0603f
+
+	measure 'Total Customers' =
+			
+			DISTINCTCOUNT(Customers[customer_id])
+		formatString: 0
+		lineageTag: 3f8c1a80-45fe-4ab3-a9f9-9f29890c859a
+
+	measure 'Total Sellers' =
+			
+			DISTINCTCOUNT(Sellers[seller_id])
+		formatString: 0
+		lineageTag: a1198c11-bb3c-441e-aa9e-2eef876e2a53
+
+	measure 'Products Sold' =
+			
+			COUNT(Items[product_id])
+		formatString: 0
+		lineageTag: a6e68967-cb76-41ea-a9ab-067d999fc221
+
+	measure 'Average Rating' =
+			
+			AVERAGE(Reviews[review_score])
+		lineageTag: c4ce6758-2d15-4608-afbd-84a77d6d21a8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Order Value' =
+			
+			DIVIDE([Total Revenue],[Total Orders])
+		lineageTag: d7c9fbcf-232a-46be-8688-95aa0574608b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'On Time Delivery %' =
+			
+			DIVIDE(
+			CALCULATE(
+			COUNTROWS(Orders),
+			Orders[Delivery Status] <> "Delayed"
+			),
+			COUNTROWS(Orders)
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: ad1b99a7-256b-4daa-b169-cc617324a9ba
+
+	measure 'Product Revenue' =
+			
+			SUM(Items[price])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 4ce68e19-0beb-41d3-abdb-af041370ff3c
+
+	measure 'Freight Revenue' =
+			
+			SUM(Items[freight_value])
+		lineageTag: 0e5fe3c4-f045-4fc3-acc4-cc17a64ae888
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Gross Sales' =
+			
+			[Product Revenue] + [Freight Revenue]
+		lineageTag: ab396cbd-2446-4b34-a940-187bd098d9ea
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Product Price' =
+			
+			AVERAGE(Items[price])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 7ef89aa9-55ed-4a04-b60d-cff5e09cb30f
+
+	measure 'Product Revenue %' =
+			
+			DIVIDE([Product Revenue],CALCULATE([Product Revenue],ALL(Products)))
+		lineageTag: c77e5b65-d03a-4398-b6f8-60c65c1412fb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Product Rank' =
+			
+			RANKX(
+			    ALL(Products[product_id]),
+			    [Product Revenue],
+			    ,
+			    DESC
+			)
+		formatString: 0
+		lineageTag: cdf5c966-717e-4d14-972e-17b84e22cd4e
+
+	measure 'Category Rank' =
+			
+			RANKX(
+			ALL('Category_translation'[product_category_name_english]),
+			[Product Revenue]
+			)
+		formatString: 0
+		lineageTag: 3164009f-3470-4732-8d52-5e362e3d57ca
+
+	measure 'Top Category' =
+			
+			TOPN(
+			1,
+			VALUES('Category_translation'[product_category_name_english]),
+			[Product Revenue]
+			)
+		lineageTag: 491c12e4-2c2e-4cd8-9901-0688d967e72b
+
+	measure 'Category Title' =
+			
+			"Category Details - " &
+			SELECTEDVALUE(
+			    'Category_translation'[product_category_name_english],
+			    "All Categories"
+			)
+		lineageTag: f21cfe6a-bb6c-4731-8251-584948af74b2
+
+	measure 'Seller Revenue' =
+			
+			SUM(Items[price])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 092aec16-92a2-49fd-a867-a66b96ef1497
+
+	measure 'Seller Orders' =
+			
+			DISTINCTCOUNT(Items[order_id])
+		formatString: 0
+		lineageTag: 482d0c95-9d66-4269-bd96-856725e36c99
+
+	measure 'Average Revenue per Seller' =
+			
+			DIVIDE([Seller Revenue],[Total Sellers])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 149713da-4d9e-443a-85a1-6707fc52c5d7
+
+	measure 'Seller Average Rating' =
+			
+			AVERAGE(Reviews[review_score])
+		lineageTag: bb3b0381-cab5-45d0-9f53-10c620d07743
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Delivery Days' =
+			
+			AVERAGEX(Orders,DATEDIFF(Orders[order_purchase_timestamp],Orders[order_delivered_customer_date],DAY))
+		lineageTag: ed22a1cb-a3e1-4717-99ee-1fccde513319
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Orders per Customer' =
+			
+			DIVIDE([Total Orders],[Total Customers])
+		lineageTag: 4dcd0c9a-fce2-4498-93ac-98d548346daf
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Payment Value' =
+			
+			SUM(Payments[payment_value])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 2946671c-85f8-41d4-a49e-a5dd9a7b707d
+
+	measure 'Total Transactions' =
+			
+			COUNT(Payments[payment_sequential])
+		formatString: 0
+		lineageTag: b0dd3e52-3bc1-4467-9b48-8a6f4aad6b3c
+
+	measure 'Average Payment Value' =
+			
+			AVERAGE(Payments[payment_value])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: bfba5336-987b-4068-b6db-7cc93e5bb794
+
+	measure 'Average Installments' =
+			
+			AVERAGE(Payments[payment_installments])
+		lineageTag: 4e8cbd85-36af-4e78-a58e-e025fa5a5aa4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Credit Card Usage %' =
+			
+			DIVIDE([Credit Card Transactions],[Total Transactions])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 9cb4676f-eb04-4af9-9a81-b20bfe3cf69f
+
+	measure 'Credit Card Transactions' =
+			
+			CALCULATE(COUNTROWS(Payments),Payments[payment_type]="credit_card")
+		formatString: 0
+		lineageTag: 6f5052bd-fdd1-4d58-b8c3-ca9d90c86b20
+
+	measure 'Delayed Orders' =
+			
+			CALCULATE(DISTINCTCOUNT(Orders[order_id]),FILTER(Orders,Orders[order_delivered_customer_date] >Orders[order_estimated_delivery_date]))
+		formatString: 0
+		lineageTag: 49ff19bb-8f51-4c6d-aeb8-e56f60cd5b48
+
+	measure 'Average Freight Cost' =
+			
+			AVERAGE(Items[freight_value])
+		lineageTag: 67f25977-173c-4fd4-99d3-c380fe6ade16
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Reviews' =
+			
+			DISTINCTCOUNT(Reviews[review_id])
+		formatString: 0
+		lineageTag: 4580353e-583e-46eb-91b0-859fd30f87c1
+
+	measure 'Positive Review %' =
+			
+			DIVIDE(CALCULATE([Total Reviews],Reviews[review_score] >= 4),[Total Reviews])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 698da109-3509-4c34-addd-287ad85d85b7
+
+	measure 'Low Rating %' =
+			
+			DIVIDE(CALCULATE([Total Reviews],Reviews[review_score] <= 2),[Total Reviews])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 5fd272b1-9665-4600-a96a-223db5ac6238
+
+	column Column1
+		dataType: string
+		lineageTag: f08e26ec-3af0-4625-b6eb-bec3d79e4aeb
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Measures Table' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

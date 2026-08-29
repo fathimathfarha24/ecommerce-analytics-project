@@ -1,0 +1,60 @@
+table Payments
+	lineageTag: 8dadc6ee-7902-4b1c-ad66-990890c33933
+
+	column order_id
+		dataType: string
+		lineageTag: 2d77cd74-044a-46dc-931b-29161d9ee87d
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_sequential
+		dataType: int64
+		formatString: 0
+		lineageTag: e997241a-3cd5-4b58-92a2-709dc1c6e615
+		summarizeBy: sum
+		sourceColumn: payment_sequential
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_type
+		dataType: string
+		lineageTag: a25be39c-500e-4419-a730-0869c5536126
+		summarizeBy: none
+		sourceColumn: payment_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_installments
+		dataType: int64
+		formatString: 0
+		lineageTag: d240163b-7566-4b8d-b360-82d5287efc23
+		summarizeBy: sum
+		sourceColumn: payment_installments
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_value
+		dataType: double
+		lineageTag: 06b66bba-50a2-4d66-b3fd-ea53a357fbac
+		summarizeBy: sum
+		sourceColumn: payment_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Payments = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database("localhost:3306", "ecommerce_analytics", [ReturnSingleDatabase=true]),
+				    ecommerce_analytics_payments = Source{[Schema="ecommerce_analytics",Item="payments"]}[Data]
+				in
+				    ecommerce_analytics_payments
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,210 @@
+table Orders
+	lineageTag: 49c7e32d-f583-4db4-868f-4fe39807e5e8
+
+	column order_id
+		dataType: string
+		lineageTag: 64468002-a18a-4ebd-8c90-2e5e2f718f96
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: string
+		lineageTag: 144dde4b-11ad-4991-905a-ed78ce78f363
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_status
+		dataType: string
+		lineageTag: 30ee7735-9408-4789-9c1c-87d0a338eaf5
+		summarizeBy: none
+		sourceColumn: order_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_purchase_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3e8476a8-caf9-4d67-9c2f-809753f13926
+		summarizeBy: none
+		sourceColumn: order_purchase_timestamp
+
+		variation Variation
+			isDefault
+			relationship: 026176c5-8317-44e6-8232-e25176a50303
+			defaultHierarchy: LocalDateTable_c193ab54-89d6-454d-9899-2dbe89468744.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_approved_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 469c454f-d466-433f-9405-33983238253d
+		summarizeBy: none
+		sourceColumn: order_approved_at
+
+		variation Variation
+			isDefault
+			relationship: e97f2fe9-57a8-491b-b521-5715bff24e8f
+			defaultHierarchy: LocalDateTable_90ef42a0-058b-4e76-96d6-bb848e784125.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_delivered_carrier_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d31fe3f5-e704-458f-8c7d-f07953307635
+		summarizeBy: none
+		sourceColumn: order_delivered_carrier_date
+
+		variation Variation
+			isDefault
+			relationship: d3f09948-a51d-4a2a-98b4-e7b6766ff798
+			defaultHierarchy: LocalDateTable_37497659-ab3c-4486-b472-136abd35e661.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_delivered_customer_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 89781566-0295-4fd6-bbba-8ebc4b59050b
+		summarizeBy: none
+		sourceColumn: order_delivered_customer_date
+
+		variation Variation
+			isDefault
+			relationship: e8debd60-4979-4790-b9b1-6ae2fe807a7c
+			defaultHierarchy: LocalDateTable_bcf32f24-0caf-4a90-8c84-913bcae7d1ac.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_estimated_delivery_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 166cc858-2b9f-411b-93c4-4d50ecc0da0a
+		summarizeBy: none
+		sourceColumn: order_estimated_delivery_date
+
+		variation Variation
+			isDefault
+			relationship: 2a79c33a-6c6d-4a42-bd78-aa00b93b926b
+			defaultHierarchy: LocalDateTable_c4b84058-ee02-437a-82d4-9a216da3afea.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Date' =
+			
+			DATE(
+			YEAR(Orders[order_purchase_timestamp]),
+			MONTH(Orders[order_purchase_timestamp]),
+			DAY(Orders[order_purchase_timestamp])
+			)
+		formatString: dd-mm-yyyy
+		lineageTag: e83e046d-6473-48ec-8e7a-bfae8f30dddc
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Delivery Date' = DATE(YEAR(Orders[order_delivered_customer_date]),MONTH(Orders[order_delivered_customer_date]),DAY(Orders[order_delivered_customer_date]))
+		formatString: dd-mm-yyyy
+		lineageTag: 59f3c9bc-515d-4604-986b-517a3cbe4514
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: b9a2f090-2619-4aff-ac4c-5e3de940bf25
+			defaultHierarchy: LocalDateTable_03e80d9e-08a2-4caa-8592-b52bf0dd9f72.'Date Hierarchy'
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'Delivery days' = DATEDIFF(Orders[order_purchase_timestamp],Orders[order_delivered_customer_date],DAY)
+		formatString: 0
+		lineageTag: 9c4f86cd-db4b-4ff7-888f-8445c37317aa
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Orders","TableItemName":"Delivery days (bins)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column 'delay days' = DATEDIFF(Orders[order_estimated_delivery_date],Orders[order_delivered_customer_date],DAY)
+		formatString: 0
+		lineageTag: 5c02a158-fcac-4fe2-9d67-894df7138c78
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Delivery Status' = IF(Orders[delay days]>0,"Delayed",IF(Orders[delay days]=0,"On Time","Early"))
+		lineageTag: b00ae807-f4c6-4e50-a65f-27882680430f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Delivery days (bins)' =
+			IF(
+				ISBLANK('Orders'[Delivery days]),
+				BLANK(),
+				INT('Orders'[Delivery days] / 5) * 5
+			)
+		formatString: 0
+		lineageTag: cb1fad50-f53a-4113-b5f5-0f72d868c4b3
+		summarizeBy: none
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Orders"
+				          }
+				        },
+				        "Property": "Delivery days"
+				      }
+				    }
+				  ],
+				  "binningMetadata": {
+				    "binSize": {
+				      "value": 5.0,
+				      "unit": 0
+				    }
+				  }
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"o","Entity":"Orders"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"o"}},"Property":"Delivery days"}}],"BinItem":{"Expression":{"Floor":{"Expression":{"Column":{"Expression":{"SourceRef":{"Source":"o"}},"Property":"Delivery days"}},"Size":5.0}}}}
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Orders = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database("localhost:3306", "ecommerce_analytics", [ReturnSingleDatabase=true]),
+				    ecommerce_analytics_orders = Source{[Schema="ecommerce_analytics",Item="orders"]}[Data],
+				    #"Removed Blank Rows" = Table.SelectRows(ecommerce_analytics_orders, each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null}))),
+				    #"Removed Errors" = Table.RemoveRowsWithErrors(#"Removed Blank Rows", {"order_approved_at"}),
+				    #"Removed Blank Rows1" = Table.SelectRows(#"Removed Errors", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null}))),
+				    #"Removed Blank Rows2" = Table.SelectRows(#"Removed Blank Rows1", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null})))
+				in
+				    #"Removed Blank Rows2"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

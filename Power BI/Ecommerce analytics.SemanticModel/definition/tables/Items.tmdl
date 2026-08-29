@@ -1,0 +1,83 @@
+table Items
+	lineageTag: f157c863-7fbe-4e05-aafb-c346432b8cc1
+
+	column order_id
+		dataType: string
+		lineageTag: 10d78436-5883-43ba-aed8-74ba0e44efc9
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_item_id
+		dataType: int64
+		formatString: 0
+		lineageTag: ac1b67a6-8cad-415c-b059-824a92d3b22f
+		summarizeBy: sum
+		sourceColumn: order_item_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: string
+		lineageTag: 121c6352-d416-467e-bc7d-f4cfc9a4fd9e
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column seller_id
+		dataType: string
+		lineageTag: 1db75dd3-df67-40d3-8b9d-a75fe28269fe
+		summarizeBy: none
+		sourceColumn: seller_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipping_limit_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: afa0caaf-eb13-4615-84cc-f9453bd4eb06
+		summarizeBy: none
+		sourceColumn: shipping_limit_date
+
+		variation Variation
+			isDefault
+			relationship: b0810c2f-884f-47c3-8fe0-3df1b48786b9
+			defaultHierarchy: LocalDateTable_eef7356a-9b44-42af-ace7-3f203aa8ec72.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column price
+		dataType: double
+		lineageTag: 6a474911-964c-4bf7-bd94-9fdb5a05036e
+		summarizeBy: sum
+		sourceColumn: price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column freight_value
+		dataType: double
+		lineageTag: 4aee3f68-60e0-4f0b-98e9-19e43c56e1c4
+		summarizeBy: sum
+		sourceColumn: freight_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Items = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database("localhost:3306", "ecommerce_analytics", [ReturnSingleDatabase=true]),
+				    ecommerce_analytics_items = Source{[Schema="ecommerce_analytics",Item="items"]}[Data]
+				in
+				    ecommerce_analytics_items
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+
