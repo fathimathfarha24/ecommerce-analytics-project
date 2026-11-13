@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "8d2223d3102a7566c807",
   "position": {
-    "x": 182.85714285714286,
-    "y": 404.62006079027356,
+    "x": 0,
+    "y": 0,
     "z": 14000,
     "height": 308.32826747720367,
     "width": 360.85106382978722,
@@ -333,6 +333,26 @@
             ]
           }
         }
+      ],
+      "dataLabels": [
+        {
+          "properties": {
+            "dataLabelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1000000D"
+                }
+              }
+            },
+            "dataLabelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "2L"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -428,5 +448,6 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  }
+  },
+  "parentGroupName": "8a8bd0a5bc7a2b02a53c"
 }

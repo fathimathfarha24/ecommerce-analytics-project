@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "a4bbb34a215ad166752a",
   "position": {
-    "x": 533.98176291793311,
-    "y": 158.54103343465047,
+    "x": 349.23845862473553,
+    "y": 4.9508884668566706,
     "z": 10000,
-    "height": 248.0243161094225,
+    "height": 212.03647416413375,
     "width": 324.8632218844985,
     "tabOrder": 10000
   },
@@ -50,24 +50,6 @@
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Measure": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Measures Table"
-                  }
-                },
-                "Property": "Average Delivery Days"
-              }
-            },
-            "direction": "Descending"
-          }
-        ],
-        "isDefaultSort": true
       }
     },
     "objects": {
@@ -135,7 +117,7 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "1000000D"
+                  "Value": "1D"
                 }
               }
             },
@@ -364,10 +346,11 @@
     },
     "drillFilterOtherVisuals": true
   },
+  "parentGroupName": "eaf592ed79e6508b3a0a",
   "filterConfig": {
     "filters": [
       {
-        "name": "55e54797008499604717",
+        "name": "4273d0873c0518794847",
         "field": {
           "Column": {
             "Expression": {
@@ -378,21 +361,72 @@
             "Property": "Year Month"
           }
         },
-        "type": "Categorical"
-      },
-      {
-        "name": "880216588086ec4395e7",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures Table"
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "Date Table",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "d"
+                              }
+                            },
+                            "Property": "Year Month"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Sep 2016'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Oct 2018'"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
               }
-            },
-            "Property": "Average Delivery Days"
-          }
+            }
+          ]
         },
-        "type": "Advanced"
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
       }
     ]
   }

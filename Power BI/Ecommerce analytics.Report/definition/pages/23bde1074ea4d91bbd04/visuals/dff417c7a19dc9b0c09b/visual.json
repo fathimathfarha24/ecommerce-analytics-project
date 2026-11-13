@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "dff417c7a19dc9b0c09b",
   "position": {
-    "x": 563.161094224924,
-    "y": 160.48632218844986,
-    "z": 14002,
+    "x": 384.19452887537994,
+    "y": 0,
+    "z": 10000,
     "height": 253.86018237082067,
     "width": 341.39817629179333,
-    "tabOrder": 14002
+    "tabOrder": 10000
   },
   "visual": {
     "visualType": "lineChart",
@@ -50,24 +50,6 @@
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Measure": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Measures Table"
-                  }
-                },
-                "Property": "Average Rating"
-              }
-            },
-            "direction": "Descending"
-          }
-        ],
-        "isDefaultSort": true
       }
     },
     "objects": {
@@ -135,7 +117,7 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "1000000D"
+                  "Value": "1D"
                 }
               }
             },
@@ -364,24 +346,11 @@
     },
     "drillFilterOtherVisuals": true
   },
+  "parentGroupName": "10b8cc1605a593190309",
   "filterConfig": {
     "filters": [
       {
-        "name": "6aba52935c0b2d0882b1",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures Table"
-              }
-            },
-            "Property": "Average Rating"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "0fe06d61be20807241cd",
+        "name": "2d871a20641017e5c641",
         "field": {
           "Column": {
             "Expression": {
@@ -392,7 +361,72 @@
             "Property": "Year Month"
           }
         },
-        "type": "Categorical"
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "Date Table",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "d"
+                              }
+                            },
+                            "Property": "Year Month"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Sep 2016'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Oct 2018'"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
       }
     ]
   }

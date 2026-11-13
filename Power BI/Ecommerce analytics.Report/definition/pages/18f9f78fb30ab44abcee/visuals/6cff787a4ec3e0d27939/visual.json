@@ -2,15 +2,15 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "6cff787a4ec3e0d27939",
   "position": {
-    "x": 235.37993920972644,
-    "y": 411.42857142857144,
+    "x": 55.440729483282666,
+    "y": 252.88753799392097,
     "z": 11000,
     "height": 300.54711246200611,
     "width": 404.62006079027356,
     "tabOrder": 11000
   },
   "visual": {
-    "visualType": "hundredPercentStackedColumnChart",
+    "visualType": "columnChart",
     "query": {
       "queryState": {
         "Category": {
@@ -95,14 +95,14 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
             "showGradientLegend": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             }
@@ -251,7 +251,7 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "1000000D"
+                  "Value": "1000D"
                 }
               }
             },
@@ -438,5 +438,82 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "a3b97e90c80eb1203eba",
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f91525e0d9ec060a32ad",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Payments"
+              }
+            },
+            "Property": "payment_type"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "p",
+              "Entity": "Payments",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "p"
+                              }
+                            },
+                            "Property": "payment_type"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'not_defined'"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
   }
 }

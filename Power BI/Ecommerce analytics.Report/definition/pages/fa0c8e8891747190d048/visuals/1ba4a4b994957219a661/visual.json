@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "1ba4a4b994957219a661",
   "position": {
-    "x": 660.42553191489367,
-    "y": 412.40121580547117,
+    "x": 475.68222762169603,
+    "y": 221.85058451548889,
     "z": 12000,
-    "height": 297.629179331307,
-    "width": 590.39513677811556,
+    "height": 337.50759878419456,
+    "width": 565.10638297872345,
     "tabOrder": 12000
   },
   "visual": {
@@ -38,14 +38,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Customers"
+                      "Entity": "Reviews"
                     }
                   },
-                  "Property": "customer_state"
+                  "Property": "review_score"
                 }
               },
-              "queryRef": "Customers.customer_state",
-              "nativeQueryRef": "customer_state",
+              "queryRef": "Reviews.review_score",
+              "nativeQueryRef": "review_score",
               "active": true
             },
             {
@@ -61,21 +61,21 @@
               },
               "queryRef": "Category_translation.product_category_name_english",
               "nativeQueryRef": "product_category_name_english",
-              "active": true
+              "active": false
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Reviews"
+                      "Entity": "Customers"
                     }
                   },
-                  "Property": "review_score"
+                  "Property": "customer_state"
                 }
               },
-              "queryRef": "Reviews.review_score",
-              "nativeQueryRef": "review_score",
+              "queryRef": "Customers.customer_state",
+              "nativeQueryRef": "customer_state",
               "active": false
             }
           ]
@@ -108,6 +108,19 @@
         "levels": [
           {
             "queryRefs": [
+              "Reviews.review_score"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "Category_translation.product_category_name_english"
+            ],
+            "isCollapsed": true
+          },
+          {
+            "queryRefs": [
               "Customers.customer_state"
             ],
             "isCollapsed": true,
@@ -122,40 +135,10 @@
                   "Property": "customer_state"
                 }
               }
-            ],
-            "isPinned": true
-          },
-          {
-            "queryRefs": [
-              "Category_translation.product_category_name_english"
-            ],
-            "isCollapsed": true,
-            "isPinned": true,
-            "AIInformation": {
-              "method": "MaxSplit"
-            }
-          },
-          {
-            "queryRefs": [
-              "Reviews.review_score"
-            ],
-            "isCollapsed": true
+            ]
           }
         ],
-        "root": {
-          "children": [
-            {
-              "identityValues": [
-                {
-                  "Literal": {
-                    "Value": "'RR'"
-                  }
-                }
-              ],
-              "isToggled": true
-            }
-          ]
-        }
+        "root": {}
       }
     ],
     "objects": {
@@ -202,28 +185,6 @@
                     "Right": {
                       "Literal": {
                         "Value": "'RR'"
-                      }
-                    }
-                  }
-                }
-              },
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "Category_translation"
-                          }
-                        },
-                        "Property": "product_category_name_english"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'agro_industry_and_commerce'"
                       }
                     }
                   }
@@ -416,36 +377,9 @@
     },
     "drillFilterOtherVisuals": true
   },
+  "parentGroupName": "eaf592ed79e6508b3a0a",
   "filterConfig": {
     "filters": [
-      {
-        "name": "8d66ee87074514bcc257",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures Table"
-              }
-            },
-            "Property": "Average Delivery Days"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "99291a2285a879ab0873",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Customers"
-              }
-            },
-            "Property": "customer_state"
-          }
-        },
-        "type": "Categorical"
-      },
       {
         "name": "52b2215331080da00a95",
         "field": {
@@ -517,20 +451,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "9dcff136bea234986077",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Reviews"
-              }
-            },
-            "Property": "review_score"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

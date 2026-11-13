@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "3cfe9987be867ac1c7ba",
   "position": {
-    "x": 544.68085106382978,
-    "y": 158.54103343465047,
+    "x": 364.741641337386,
+    "y": 0,
     "z": 10000,
     "height": 245.10638297872342,
     "width": 344.31610942249239,
@@ -50,24 +50,6 @@
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Measure": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Measures Table"
-                  }
-                },
-                "Property": "Total Payment Value"
-              }
-            },
-            "direction": "Descending"
-          }
-        ],
-        "isDefaultSort": true
       }
     },
     "objects": {
@@ -364,10 +346,11 @@
     },
     "drillFilterOtherVisuals": true
   },
+  "parentGroupName": "a3b97e90c80eb1203eba",
   "filterConfig": {
     "filters": [
       {
-        "name": "4d3e3e1aaee60ddc8b08",
+        "name": "d673ea879a1034456c42",
         "field": {
           "Column": {
             "Expression": {
@@ -378,21 +361,72 @@
             "Property": "Year Month"
           }
         },
-        "type": "Categorical"
-      },
-      {
-        "name": "2d07bc7de9608738e7d5",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures Table"
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "Date Table",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "d"
+                              }
+                            },
+                            "Property": "Year Month"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Sep 2016'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Oct 2018'"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
               }
-            },
-            "Property": "Total Payment Value"
-          }
+            }
+          ]
         },
-        "type": "Advanced"
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
       }
     ]
   }

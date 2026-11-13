@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "13c6c38a209308e00b80",
   "position": {
-    "x": 866.62613981762922,
-    "y": 125.47112462006079,
+    "x": 846.20060790273556,
+    "y": 0,
     "z": 8000,
     "height": 294.71124620060789,
     "width": 389.05775075987845,
@@ -165,7 +165,7 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "1000000D"
+                  "Value": "1D"
                 }
               }
             },
@@ -418,41 +418,5 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "154427b4487eab54325e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Reviews"
-              }
-            },
-            "Property": "review_score"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "eff47e780709c7b22397",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Reviews"
-                  }
-                },
-                "Property": "review_score"
-              }
-            },
-            "Function": 5
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
-  }
+  "parentGroupName": "2788a376b7c9deb273bb"
 }

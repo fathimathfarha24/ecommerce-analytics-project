@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "e94128d79e2d28989061",
   "position": {
-    "x": 796.59574468085111,
-    "y": 422.12765957446811,
-    "z": 14004,
-    "height": 290.82066869300911,
-    "width": 373.49544072948328,
-    "tabOrder": 14004
+    "x": 555.00607902735555,
+    "y": 261.51367781155011,
+    "z": 12000,
+    "height": 291,
+    "width": 508,
+    "tabOrder": 12000
   },
   "visual": {
     "visualType": "barChart",
@@ -155,7 +155,7 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "1000000D"
+                  "Value": "1D"
                 }
               }
             },
@@ -401,10 +401,11 @@
     },
     "drillFilterOtherVisuals": true
   },
+  "parentGroupName": "10b8cc1605a593190309",
   "filterConfig": {
     "filters": [
       {
-        "name": "de2e399d524933ec80c0",
+        "name": "2bf76fdcad72650b1e80",
         "field": {
           "Column": {
             "Expression": {
@@ -503,20 +504,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "588d07c7b069d0361b8b",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures Table"
-              }
-            },
-            "Property": "Average Rating"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

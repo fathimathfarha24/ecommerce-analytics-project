@@ -28,6 +28,7 @@ table Customers
 	column customer_state
 		dataType: string
 		lineageTag: d8fcb318-e01e-415b-89db-47e70674a4d7
+		dataCategory: StateOrProvince
 		summarizeBy: none
 		sourceColumn: customer_state
 
@@ -35,9 +36,36 @@ table Customers
 
 	column 'ecommerce_analytics.orders'
 		dataType: string
+		isHidden
 		lineageTag: b7b3400e-89f5-46d0-bd6a-897e3e2f20bd
 		summarizeBy: none
 		sourceColumn: ecommerce_analytics.orders
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Map Location' = Customers[State Name] & ", Brazil"
+		lineageTag: 623148b3-5ed5-4e90-bed1-9a1fb6f4ab3c
+		dataCategory: StateOrProvince
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'State Name' =
+			
+			SWITCH(Customers[customer_state],
+			"AC","Acre","AL","Alagoas","AP","Amapá","AM","Amazonas","BA","Bahia",
+			"CE","Ceará","DF","Distrito Federal","ES","Espírito Santo","GO","Goiás",
+			"MA","Maranhão","MT","Mato Grosso","MS","Mato Grosso do Sul","MG","Minas Gerais",
+			"PA","Pará","PB","Paraíba","PR","Paraná","PE","Pernambuco","PI","Piauí",
+			"RJ","Rio de Janeiro","RN","Rio Grande do Norte","RS","Rio Grande do Sul",
+			"RO","Rondônia","RR","Roraima","SC","Santa Catarina","SP","São Paulo",
+			"SE","Sergipe","TO","Tocantins",
+			Customers[customer_state])
+		lineageTag: d925d10e-0006-4362-b851-45635200f356
+		dataCategory: StateOrProvince
+		summarizeBy: none
 
 		annotation SummarizationSetBy = Automatic
 

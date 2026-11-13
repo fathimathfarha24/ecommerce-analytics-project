@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "fcef40466920bde27056",
   "position": {
-    "x": 554.40729483282678,
-    "y": 404.62006079027356,
+    "x": 371.55015197568389,
+    "y": 0,
     "z": 12000,
     "height": 308.32826747720367,
     "width": 354.04255319148939,
@@ -143,6 +143,13 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1000D"
                 }
               }
             }
@@ -427,64 +434,5 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "b05e8f7040b71ad66766",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures Table"
-              }
-            },
-            "Property": "Average Product Price"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "9070b1fbb03663ad2690",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures Table"
-              }
-            },
-            "Property": "Product Revenue"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "cc424e183ea53da25d81",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures Table"
-              }
-            },
-            "Property": "Products Sold"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "7564430a00757028e504",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Category_translation"
-              }
-            },
-            "Property": "product_category_name_english"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
-  }
+  "parentGroupName": "8a8bd0a5bc7a2b02a53c"
 }

@@ -29,8 +29,32 @@ table Sellers
 	column seller_state
 		dataType: string
 		lineageTag: 9eef6cac-04a1-4b70-aead-64392118aa7e
+		dataCategory: StateOrProvince
 		summarizeBy: none
 		sourceColumn: seller_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Seller Map Location' = Sellers[State Name] & ", Brazil"
+		lineageTag: 437e9938-92ef-42b4-8ec8-0545ab7c46e7
+		dataCategory: StateOrProvince
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'State Name' =
+			
+			SWITCH(Sellers[seller_state],
+			"AC","Acre","AL","Alagoas","AP","Amapá","AM","Amazonas","BA","Bahia",
+			"CE","Ceará","DF","Distrito Federal","ES","Espírito Santo","GO","Goiás",
+			"MA","Maranhão","MT","Mato Grosso","MS","Mato Grosso do Sul","MG","Minas Gerais",
+			"PA","Pará","PB","Paraíba","PR","Paraná","PE","Pernambuco","PI","Piauí",
+			"RJ","Rio de Janeiro","RN","Rio Grande do Norte","RS","Rio Grande do Sul",
+			"RO","Rondônia","RR","Roraima","SC","Santa Catarina","SP","São Paulo",
+			"SE","Sergipe","TO","Tocantins",
+			Sellers[seller_state])
+		lineageTag: 8620f0d9-eb15-42e3-9140-de1f844d20dc
+		summarizeBy: none
 
 		annotation SummarizationSetBy = Automatic
 

@@ -31,7 +31,7 @@
           "expanded": {
             "expr": {
               "Literal": {
-                "Value": "false"
+                "Value": "true"
               }
             }
           }
@@ -56,8 +56,38 @@
       "type": "RegisteredResources",
       "items": [
         {
+          "name": "average_rating18776401289702094.png",
+          "path": "average_rating18776401289702094.png",
+          "type": "Image"
+        },
+        {
+          "name": "avg_order_value056889082227577825.png",
+          "path": "avg_order_value056889082227577825.png",
+          "type": "Image"
+        },
+        {
           "name": "olist_logo807197798531181.png",
           "path": "olist_logo807197798531181.png",
+          "type": "Image"
+        },
+        {
+          "name": "on_time_delivery0030662660220065474.png",
+          "path": "on_time_delivery0030662660220065474.png",
+          "type": "Image"
+        },
+        {
+          "name": "total_customers5139912139566453.png",
+          "path": "total_customers5139912139566453.png",
+          "type": "Image"
+        },
+        {
+          "name": "total_orders6056378860091064.webp",
+          "path": "total_orders6056378860091064.webp",
+          "type": "Image"
+        },
+        {
+          "name": "total_revenue6531551525877709.png",
+          "path": "total_revenue6531551525877709.png",
           "type": "Image"
         }
       ]
@@ -69,6 +99,8 @@
     "defaultDrillFilterOtherVisuals": true,
     "allowChangeFilterTypes": true,
     "useEnhancedTooltips": true,
-    "useDefaultAggregateDisplayName": true
+    "useDefaultAggregateDisplayName": true,
+    "customMemoryLimit": "1048576",
+    "customTimeoutLimit": "225"
   }
 }

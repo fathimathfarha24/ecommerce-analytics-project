@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "a059217929ab7ad49bc8",
   "position": {
-    "x": 20.425531914893618,
-    "y": 125.47112462006079,
+    "x": 0,
+    "y": 0,
     "z": 4000,
     "height": 294.71124620060789,
     "width": 407.53799392097267,
@@ -155,7 +155,7 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "1000000D"
+                  "Value": "1000D"
                 }
               }
             },
@@ -408,10 +408,11 @@
     },
     "drillFilterOtherVisuals": true
   },
+  "parentGroupName": "2788a376b7c9deb273bb",
   "filterConfig": {
     "filters": [
       {
-        "name": "6ffd18d7d58a3ea0b70d",
+        "name": "2c8cb9699c54b0be23e5",
         "field": {
           "Column": {
             "Expression": {
@@ -510,20 +511,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "37af8cf17197011b4be6",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures Table"
-              }
-            },
-            "Property": "Product Revenue"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

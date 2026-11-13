@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "e24571d880bc0db31d08",
   "position": {
-    "x": 599.14893617021278,
-    "y": 437.68996960486322,
+    "x": 578.72340425531911,
+    "y": 312.21884498480244,
     "z": 7000,
     "height": 263.58662613981767,
     "width": 656.53495440729489,
@@ -310,6 +310,22 @@
             "metadata": "Measures Table.Average Product Price"
           }
         }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Measures Table.Product Revenue"
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -467,10 +483,11 @@
     },
     "drillFilterOtherVisuals": true
   },
+  "parentGroupName": "2788a376b7c9deb273bb",
   "filterConfig": {
     "filters": [
       {
-        "name": "839e23397aab3a8b0c88",
+        "name": "2f43d4907e06404280b8",
         "field": {
           "Column": {
             "Expression": {

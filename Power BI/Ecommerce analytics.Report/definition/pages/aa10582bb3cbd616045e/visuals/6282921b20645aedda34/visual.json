@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "6282921b20645aedda34",
   "position": {
-    "x": 839.39209726443778,
-    "y": 423.10030395136778,
+    "x": 669,
+    "y": 260,
     "z": 13000,
-    "height": 283.03951367781156,
-    "width": 427.96352583586628,
+    "height": 283,
+    "width": 420,
     "tabOrder": 13000
   },
   "visual": {
@@ -456,6 +456,13 @@
                   }
                 }
               }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1000000D"
+                }
+              }
             }
           },
           "selector": {
@@ -597,7 +604,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Top Customers by Revenue'"
+                  "Value": "'Revenue by State'"
                 }
               }
             },
@@ -744,5 +751,80 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "1297c7c22823782a1dd1",
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d86a701e9d17748da10a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Customers"
+              }
+            },
+            "Property": "customer_state"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "aa5e5870014dd1353e4d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures Table"
+              }
+            },
+            "Property": "Total Customers"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "8ba3a94994e338842e1e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures Table"
+              }
+            },
+            "Property": "Product Revenue"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1591a363c8e6a5e27a71",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures Table"
+              }
+            },
+            "Property": "Total Orders"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "229d13c2a949e294a7ed",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures Table"
+              }
+            },
+            "Property": "Average Order Value"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

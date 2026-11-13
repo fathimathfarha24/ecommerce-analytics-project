@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "6a55bffd0094eb5a6241",
   "position": {
-    "x": 917.20364741641345,
-    "y": 160.48632218844986,
-    "z": 14005,
+    "x": 739.20972644376911,
+    "y": 0,
+    "z": 13000,
     "height": 253.86018237082067,
     "width": 350.15197568389061,
-    "tabOrder": 14005
+    "tabOrder": 13000
   },
   "visual": {
     "visualType": "scatterChart",
@@ -137,7 +137,7 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "1000000D"
+                  "Value": "1D"
                 }
               }
             },
@@ -390,36 +390,5 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "7f44e1b5b35696190060",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures Table"
-              }
-            },
-            "Property": "Average Rating"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "cef8974f03417473563e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Orders"
-              }
-            },
-            "Property": "Delivery days (bins)"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
-  }
+  "parentGroupName": "10b8cc1605a593190309"
 }

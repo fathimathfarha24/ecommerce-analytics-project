@@ -71,6 +71,7 @@ relationship e037a721-1144-4d93-9bc9-25e9c518c9d5
 	annotation PBI_IsFromSource = FS
 
 relationship 02bd3c9a-6b16-40f7-aaa7-fbd5d81a3771
+	crossFilteringBehavior: bothDirections
 	fromColumn: Reviews.order_id
 	toColumn: Orders.order_id
 

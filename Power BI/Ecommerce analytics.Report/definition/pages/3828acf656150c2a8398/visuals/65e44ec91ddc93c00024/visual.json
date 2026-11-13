@@ -4,10 +4,10 @@
   "position": {
     "x": 20.425531914893618,
     "y": 437.68996960486322,
-    "z": 10000,
+    "z": 5000,
     "height": 83.647416413373861,
     "width": 183.82978723404256,
-    "tabOrder": 10000
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "slicer",
@@ -51,42 +51,6 @@
       "general": [
         {
           "properties": {
-            "filter": {
-              "filter": {
-                "Version": 2,
-                "From": [
-                  {
-                    "Name": "d",
-                    "Entity": "Date Table",
-                    "Type": 0
-                  }
-                ],
-                "Where": [
-                  {
-                    "Condition": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Source": "d"
-                              }
-                            },
-                            "Property": "Month"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "'April'"
-                          }
-                        }
-                      }
-                    }
-                  }
-                ]
-              }
-            },
             "orientation": {
               "expr": {
                 "Literal": {

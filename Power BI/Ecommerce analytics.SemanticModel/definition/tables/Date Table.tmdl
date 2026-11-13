@@ -31,6 +31,7 @@ table 'Date Table'
 	column Month = FORMAT('Date Table'[Date], "MMMM")
 		lineageTag: 3aa000e2-eac8-4847-8d6a-cddcd1f19de7
 		summarizeBy: none
+		sortByColumn: 'Month Number'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -42,6 +43,14 @@ table 'Date Table'
 
 	column 'Year Month' = FORMAT('Date Table'[Date], "MMM yyyy")
 		lineageTag: 4977e403-d682-44eb-b53b-af9c2e54cb43
+		summarizeBy: none
+		sortByColumn: YearMonthSort
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonthSort = YEAR('Date Table'[Date]) * 100 + MONTH('Date Table'[Date])
+		formatString: 0
+		lineageTag: fec4aa6a-7a7b-4f57-a031-c376a2db07c8
 		summarizeBy: none
 
 		annotation SummarizationSetBy = Automatic

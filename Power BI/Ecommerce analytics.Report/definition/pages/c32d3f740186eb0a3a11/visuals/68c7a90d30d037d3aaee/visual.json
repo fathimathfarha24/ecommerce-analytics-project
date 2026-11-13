@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "68c7a90d30d037d3aaee",
   "position": {
-    "x": 549.54407294832833,
-    "y": 165.34954407294833,
+    "x": 374.06079027355622,
+    "y": 0.13624173073484519,
     "z": 4000,
-    "height": 246.07902735562311,
-    "width": 362.79635258358667,
-    "tabOrder": 4000
+    "height": 246.52941176470588,
+    "width": 358,
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "columnChart",
@@ -261,6 +261,33 @@
             }
           }
         }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "labelOrientation": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "labelPosition": {
+              "expr": {
+                "Literal": {
+                  "Value": "'InsideEnd'"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -411,10 +438,11 @@
     },
     "drillFilterOtherVisuals": true
   },
+  "parentGroupName": "85faf3f51e588a12077c",
   "filterConfig": {
     "filters": [
       {
-        "name": "b73536377ed8ae204b13",
+        "name": "9a07305a001785847ab0",
         "field": {
           "Column": {
             "Expression": {

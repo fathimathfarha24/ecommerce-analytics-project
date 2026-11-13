@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "ff60e42929b7ca53132b",
   "position": {
-    "x": 179.93920972644378,
-    "y": 158.54103343465047,
+    "x": 0,
+    "y": 0.94603708391459618,
     "z": 9000,
-    "height": 248.0243161094225,
-    "width": 324.8632218844985,
+    "height": 216.89969604863222,
+    "width": 320,
     "tabOrder": 9000
   },
   "visual": {
@@ -155,7 +155,7 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "1000000D"
+                  "Value": "1D"
                 }
               }
             },
@@ -408,36 +408,5 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "d0c44bf473b61ac7a419",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Customers"
-              }
-            },
-            "Property": "customer_state"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "29527dffe4ede1412443",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures Table"
-              }
-            },
-            "Property": "Average Delivery Days"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
-  }
+  "parentGroupName": "eaf592ed79e6508b3a0a"
 }

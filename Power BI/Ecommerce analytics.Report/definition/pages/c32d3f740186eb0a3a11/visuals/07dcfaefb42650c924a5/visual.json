@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "07dcfaefb42650c924a5",
   "position": {
-    "x": 179.93920972644378,
-    "y": 432.82674772036478,
+    "x": 0,
+    "y": 0,
     "z": 6000,
-    "height": 265.53191489361706,
+    "height": 257.71942240001471,
     "width": 354.04255319148939,
-    "tabOrder": 6000
+    "tabOrder": 0
   },
   "visual": {
     "visualType": "filledMap",
@@ -23,11 +23,11 @@
                       "Entity": "Customers"
                     }
                   },
-                  "Property": "customer_state"
+                  "Property": "Map Location"
                 }
               },
-              "queryRef": "Customers.customer_state",
-              "nativeQueryRef": "customer_state",
+              "queryRef": "Customers.Map Location",
+              "nativeQueryRef": "Map Location",
               "active": true
             }
           ]
@@ -146,6 +146,64 @@
                 }
               }
             }
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "FillRule": {
+                      "Input": {
+                        "Measure": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Measures Table"
+                            }
+                          },
+                          "Property": "Total Revenue"
+                        }
+                      },
+                      "FillRule": {
+                        "linearGradient2": {
+                          "min": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#70bbff'"
+                              }
+                            }
+                          },
+                          "max": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#09124f'"
+                              }
+                            }
+                          },
+                          "nullColoringStrategy": {
+                            "strategy": {
+                              "Literal": {
+                                "Value": "'asZero'"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ]
           }
         }
       ]
@@ -297,5 +355,6 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  }
+  },
+  "parentGroupName": "71bba4072e2eb76106c1"
 }

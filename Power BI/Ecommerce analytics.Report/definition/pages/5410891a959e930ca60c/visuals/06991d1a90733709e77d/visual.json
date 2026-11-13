@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "06991d1a90733709e77d",
   "position": {
-    "x": 923.03951367781156,
-    "y": 162.43161094224925,
+    "x": 740.18237082066867,
+    "y": 0,
     "z": 11000,
     "height": 233.43465045592706,
     "width": 338.48024316109422,
@@ -23,11 +23,11 @@
                       "Entity": "Date Table"
                     }
                   },
-                  "Property": "Month"
+                  "Property": "Year Month"
                 }
               },
-              "queryRef": "Date Table.Month",
-              "nativeQueryRef": "Month",
+              "queryRef": "Date Table.Year Month",
+              "nativeQueryRef": "Year Month",
               "active": true
             }
           ]
@@ -50,24 +50,6 @@
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Measure": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Measures Table"
-                  }
-                },
-                "Property": "Product Revenue"
-              }
-            },
-            "direction": "Descending"
-          }
-        ],
-        "isDefaultSort": true
       }
     },
     "objects": {
@@ -157,6 +139,13 @@
                   }
                 }
               }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "2L"
+                }
+              }
             }
           }
         }
@@ -178,6 +167,25 @@
           },
           "selector": {
             "metadata": "Measures Table.Total Revenue"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Measures Table.Product Revenue"
           }
         }
       ],
@@ -363,5 +371,89 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "c180717b762dc6ee817e",
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "129e912d2d3b5e0aaa24",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Date Table"
+              }
+            },
+            "Property": "Year Month"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "Date Table",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "d"
+                              }
+                            },
+                            "Property": "Year Month"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Sep 2016'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Oct 2018'"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
   }
 }

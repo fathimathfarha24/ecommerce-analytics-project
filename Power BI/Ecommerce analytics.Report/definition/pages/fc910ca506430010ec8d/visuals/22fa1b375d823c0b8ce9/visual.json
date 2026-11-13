@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "22fa1b375d823c0b8ce9",
   "position": {
-    "x": 556.35258358662611,
-    "y": 412.40121580547117,
+    "x": 373,
+    "y": 0,
     "z": 11000,
-    "height": 292.7659574468085,
-    "width": 304.43768996960489,
+    "height": 293,
+    "width": 333,
     "tabOrder": 11000
   },
   "visual": {
@@ -23,11 +23,11 @@
                       "Entity": "Sellers"
                     }
                   },
-                  "Property": "seller_state"
+                  "Property": "Seller Map Location"
                 }
               },
-              "queryRef": "Sellers.seller_state",
-              "nativeQueryRef": "seller_state",
+              "queryRef": "Sellers.Seller Map Location",
+              "nativeQueryRef": "Seller Map Location",
               "active": true
             }
           ]
@@ -117,7 +117,7 @@
                               "Entity": "Measures Table"
                             }
                           },
-                          "Property": "Product Revenue"
+                          "Property": "Seller Revenue"
                         }
                       },
                       "FillRule": {
@@ -132,7 +132,7 @@
                           "max": {
                             "color": {
                               "Literal": {
-                                "Value": "'#0D6ABF'"
+                                "Value": "'#094780'"
                               }
                             }
                           },
@@ -358,5 +358,6 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  }
+  },
+  "parentGroupName": "4441614eda9a0a903674"
 }

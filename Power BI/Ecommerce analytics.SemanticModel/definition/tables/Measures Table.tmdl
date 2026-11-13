@@ -15,7 +15,7 @@ table 'Measures Table'
 
 	measure 'Total Customers' =
 			
-			DISTINCTCOUNT(Customers[customer_id])
+			DISTINCTCOUNT(Customers[customer_unique_id])
 		formatString: 0
 		lineageTag: 3f8c1a80-45fe-4ab3-a9f9-9f29890c859a
 
@@ -60,15 +60,16 @@ table 'Measures Table'
 	measure 'Product Revenue' =
 			
 			SUM(Items[price])
-		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
 		lineageTag: 4ce68e19-0beb-41d3-abdb-af041370ff3c
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
 	measure 'Freight Revenue' =
 			
 			SUM(Items[freight_value])
+		formatString: 0.00
 		lineageTag: 0e5fe3c4-f045-4fc3-acc4-cc17a64ae888
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Gross Sales' =
 			
@@ -80,7 +81,7 @@ table 'Measures Table'
 	measure 'Average Product Price' =
 			
 			AVERAGE(Items[price])
-		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
 		lineageTag: 7ef89aa9-55ed-4a04-b60d-cff5e09cb30f
 
 	measure 'Product Revenue %' =
@@ -131,7 +132,7 @@ table 'Measures Table'
 	measure 'Seller Revenue' =
 			
 			SUM(Items[price])
-		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
 		lineageTag: 092aec16-92a2-49fd-a867-a66b96ef1497
 
 	measure 'Seller Orders' =
@@ -143,8 +144,10 @@ table 'Measures Table'
 	measure 'Average Revenue per Seller' =
 			
 			DIVIDE([Seller Revenue],[Total Sellers])
-		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
 		lineageTag: 149713da-4d9e-443a-85a1-6707fc52c5d7
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
 	measure 'Seller Average Rating' =
 			
@@ -170,7 +173,7 @@ table 'Measures Table'
 	measure 'Total Payment Value' =
 			
 			SUM(Payments[payment_value])
-		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
 		lineageTag: 2946671c-85f8-41d4-a49e-a5dd9a7b707d
 
 	measure 'Total Transactions' =
@@ -213,9 +216,10 @@ table 'Measures Table'
 	measure 'Average Freight Cost' =
 			
 			AVERAGE(Items[freight_value])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
 		lineageTag: 67f25977-173c-4fd4-99d3-c380fe6ade16
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
 	measure 'Total Reviews' =
 			

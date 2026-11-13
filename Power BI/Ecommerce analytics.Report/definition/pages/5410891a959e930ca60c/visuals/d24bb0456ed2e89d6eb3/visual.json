@@ -2,15 +2,15 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "d24bb0456ed2e89d6eb3",
   "position": {
-    "x": 923.03951367781156,
-    "y": 404.62006079027356,
+    "x": 740.18237082066867,
+    "y": 0,
     "z": 13000,
     "height": 308.32826747720367,
     "width": 338.48024316109422,
     "tabOrder": 13000
   },
   "visual": {
-    "visualType": "ribbonChart",
+    "visualType": "columnChart",
     "query": {
       "queryState": {
         "Category": {
@@ -23,11 +23,11 @@
                       "Entity": "Date Table"
                     }
                   },
-                  "Property": "Month"
+                  "Property": "Year Month"
                 }
               },
-              "queryRef": "Date Table.Month",
-              "nativeQueryRef": "Month",
+              "queryRef": "Date Table.Year Month",
+              "nativeQueryRef": "Year Month",
               "active": true
             }
           ]
@@ -73,16 +73,16 @@
         "sort": [
           {
             "field": {
-              "Measure": {
+              "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Measures Table"
+                    "Entity": "Date Table"
                   }
                 },
-                "Property": "Product Revenue"
+                "Property": "Year Month"
               }
             },
-            "direction": "Descending"
+            "direction": "Ascending"
           }
         ]
       }
@@ -185,7 +185,7 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "1000000D"
+                  "Value": "1000D"
                 }
               }
             },
@@ -438,10 +438,11 @@
     },
     "drillFilterOtherVisuals": true
   },
+  "parentGroupName": "8a8bd0a5bc7a2b02a53c",
   "filterConfig": {
     "filters": [
       {
-        "name": "1a1a1317e2dacea0193e",
+        "name": "e0bb441382ce50adeeb3",
         "field": {
           "Column": {
             "Expression": {
@@ -533,6 +534,106 @@
                   "Table": {
                     "SourceRef": {
                       "Source": "subquery"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "c9203df2019eb545b31c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Date Table"
+              }
+            },
+            "Property": "Year Month"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "Date Table",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "d"
+                              }
+                            },
+                            "Property": "Year Month"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Sep 2016'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Oct 2016'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Nov 2016'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Oct 2018'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Dec 2016'"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
                     }
                   }
                 }

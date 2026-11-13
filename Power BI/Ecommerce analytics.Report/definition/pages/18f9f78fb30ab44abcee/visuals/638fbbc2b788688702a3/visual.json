@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "638fbbc2b788688702a3",
   "position": {
-    "x": 678.90577507598789,
-    "y": 411.42857142857144,
+    "x": 498.96656534954411,
+    "y": 252.88753799392097,
     "z": 13000,
     "height": 300.54711246200611,
     "width": 546.62613981762922,
@@ -169,6 +169,19 @@
               "expr": {
                 "Literal": {
                   "Value": "3L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataLabels": [
+        {
+          "properties": {
+            "dataLabelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1000000D"
                 }
               }
             }
@@ -456,64 +469,5 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "126e1bd10d4a23adbd26",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures Table"
-              }
-            },
-            "Property": "Total Payment Value"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "ab22a9f54e77209165bc",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Payments"
-              }
-            },
-            "Property": "payment_type"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "c5c3efc175a0bece6d02",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Payments"
-              }
-            },
-            "Property": "payment_installments"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "f314c4dc634050cc4195",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Customers"
-              }
-            },
-            "Property": "customer_state"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
-  }
+  "parentGroupName": "a3b97e90c80eb1203eba"
 }
